@@ -1,15 +1,14 @@
 # Mastermind Game
-#
-# Menu
+# Lib Import
 from random import randrange
 # Declaring variables
 genRandomList=[]
 userGuessList=[]
 playingMastermind=1
 playingMastermindAnswer=str()
-mmCorrectPlace=0
-mmCorrectNumber=0
-mmWrongNumber=0
+mmCorrectPlace=int(0)
+mmCorrectNumber=int(0)
+mmWrongNumber=int(0)
 userGuess=str()
 userGuessRangeCheck=int(0)
 numOfTries=int(0)
@@ -48,13 +47,14 @@ if (menu_inp=="Yes"):
                     else:
                         mmWrongNumber+=1
                 print(" mmCorrectPlace ",mmCorrectPlace,"\n mmCorrectNumber ",mmCorrectNumber,"\n mmWrongNumber ",mmWrongNumber)
+            mmCorrectPlace=int(0)
+            mmCorrectNumber=int(0)
+            mmWrongNumber=int(0)
             userGuess=str()
-            userGuessList=[]
             userGuessRangeCheck=int(0)
             numOfTries+=1
-            
         # Loop to play the game
-        playingMastermindAnswer=input("Would you like to play again (Yes/No): ")
+        playingMastermindAnswer=input(" GAME OVER!\n Would you like to play again (Yes/No): ")
         if (playingMastermindAnswer=="Yes"):
             playingMastermind=1
             # Resetting variables
