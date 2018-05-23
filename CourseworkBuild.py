@@ -27,7 +27,7 @@ if (menu_inp=="Yes"):
         print(" 1 - White\n 2 - Blue\n 3 - Red\n 4 - Yellow\n 5 - Green\n 6 - Purple")
         userGuess=input("Enter your guess: ")
         # Insert WHILE LOOP for 8 times
-        if (numOfTries<=8):
+        while (numOfTries<=8):
             # Check user input complying with range rules
             for h in range(0,4):
                 userGuessList.insert(h,int(userGuess[h]))
@@ -45,23 +45,24 @@ if (menu_inp=="Yes"):
                     mmCorrectNumber+=1
                 else:
                     mmWrongNumber+=1
+            numOfTries+=1
+            print(numOfTries)
             #print(" mmCorrectPlace ",mmCorrectPlace,"\n mmCorrectNumber ",mmCorrectNumber,"\n mmWrongNumber ",mmWrongNumber)
+        # Loop to play the game
+        playingMastermindAnswer=input("Would you like to play again (Yes/No): ")
+        if (playingMastermindAnswer=="Yes"):
+            playingMastermind=1
+            # Resetting variables
+            numOfTries=1
+            userGuess=str()
+            userGuessList=[]
+            userGuessRangeCheck=0
+        elif (playingMastermindAnswer=="No"):
+            print(" Thank-you for playing.\n Hope you had fun.\n Shutting down the game.")
+            playingMastermind=0
         else:
-            # Loop to play the game
-            playingMastermindAnswer=input("Would you like to play again (Yes/No): ")
-            if (playingMastermindAnswer=="Yes"):
-                playingMastermind=1
-                # Resetting variables
-                numOfTries=1
-                userGuess=str()
-                userGuessList=[]
-                userGuessRangeCheck=0
-            elif (playingMastermindAnswer=="No"):
-                print(" Thank-you for playing.\n Hope you had fun.\n Shutting down the game.")
-                playingMastermind=0
-            else:
-                print("Sorry that response was not expected.\n Shutting down the game.")
-                playingMastermind=0
+            print("Sorry that response was not expected.\n Shutting down the game.")
+            playingMastermind=0
 elif (menu_inp=="No"):
     print("We'll play again soon.")
     input("Press 'Enter' to exit...")
