@@ -11,8 +11,8 @@ mmCorrectPlace=0
 mmCorrectNumber=0
 mmWrongNumber=0
 userGuess=str()
-userGuessRangeCheck=0
-numOfTries=0
+userGuessRangeCheck=int(0)
+numOfTries=int(0)
 # Menu Input
 menu_inp=input("Would you like to begin(Yes/No): ")
 # Show Time
@@ -26,7 +26,8 @@ if (menu_inp=="Yes"):
         print("Enter your guess using a 4 digit code (follow the scheme below).")
         print(" 1 - White\n 2 - Blue\n 3 - Red\n 4 - Yellow\n 5 - Green\n 6 - Purple")
         # Insert WHILE LOOP for 8 times
-        while (numOfTries<=8):
+        while (numOfTries<8):
+            print("Try number: ",numOfTries+1)
             userGuess=input("Enter your guess: ")
             # Check user input complying with range rules
             for h in range(0,4):
@@ -36,7 +37,7 @@ if (menu_inp=="Yes"):
             #print(userGuessRangeCheck)
             #print(userGuessList)
             if (userGuessRangeCheck!=4):
-                print("From your 4 digit guess,"(4-userGuessRangeCheck)," digit(s) were not within the range of 1-6")
+                print("From your 4 digit guess,",(4-userGuessRangeCheck)," digit(s) were not within the range of 1-6")
             else:
                 # Mastermind Game Check
                 for j in range(0,4):
@@ -47,11 +48,10 @@ if (menu_inp=="Yes"):
                     else:
                         mmWrongNumber+=1
                 print(" mmCorrectPlace ",mmCorrectPlace,"\n mmCorrectNumber ",mmCorrectNumber,"\n mmWrongNumber ",mmWrongNumber)
-                userGuess=str()
-                userGuessList=[]
-                userGuessRangeCheck=0
-                numOfTries+=1
-                #print(numOfTries)
+            userGuess=str()
+            userGuessList=[]
+            userGuessRangeCheck=int(0)
+            numOfTries+=1
             
         # Loop to play the game
         playingMastermindAnswer=input("Would you like to play again (Yes/No): ")
