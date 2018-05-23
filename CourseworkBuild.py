@@ -28,31 +28,32 @@ if (menu_inp=="Yes"):
         while (numOfTries<8):
             print("Try number: ",numOfTries+1)
             userGuess=input("Enter your guess: ")
-            # Check user input complying with range rules
-            for h in range(0,4):
-                userGuessList.insert(h,int(userGuess[h]))
-                if (int(userGuess[h])>=1 and int(userGuess[h])<=6):
-                    userGuessRangeCheck+=1
-            #print(userGuessRangeCheck)
-            #print(userGuessList)
-            if (userGuessRangeCheck!=4):
-                print("From your 4 digit guess,",(4-userGuessRangeCheck)," digit(s) were not within the range of 1-6")
-            else:
-                # Mastermind Game Check
-                for j in range(0,4):
-                    if (userGuessList[j]==genRandomList[j]):
-                        mmCorrectPlace+=1
-                    elif (userGuessList[j] in genRandomList):
-                        mmCorrectNumber+=1
-                    else:
-                        mmWrongNumber+=1
-                print(" mmCorrectPlace ",mmCorrectPlace,"\n mmCorrectNumber ",mmCorrectNumber,"\n mmWrongNumber ",mmWrongNumber)
-            mmCorrectPlace=int(0)
-            mmCorrectNumber=int(0)
-            mmWrongNumber=int(0)
-            userGuess=str()
-            userGuessRangeCheck=int(0)
-            numOfTries+=1
+            if (userGuess!="0000")
+                # Check user input complying with range rules
+                for h in range(0,4):
+                    userGuessList.insert(h,int(userGuess[h]))
+                    if (int(userGuess[h])>=1 and int(userGuess[h])<=6):
+                        userGuessRangeCheck+=1
+                #print(userGuessRangeCheck)
+                #print(userGuessList)
+                if (userGuessRangeCheck!=4):
+                    print("From your 4 digit guess,",(4-userGuessRangeCheck)," digit(s) were not within the range of 1-6")
+                else:
+                    # Mastermind Game Check
+                    for j in range(0,4):
+                        if (userGuessList[j]==genRandomList[j]):
+                            mmCorrectPlace+=1
+                        elif (userGuessList[j] in genRandomList):
+                            mmCorrectNumber+=1
+                        else:
+                            mmWrongNumber+=1
+                    print(" mmCorrectPlace ",mmCorrectPlace,"\n mmCorrectNumber ",mmCorrectNumber,"\n mmWrongNumber ",mmWrongNumber)
+                mmCorrectPlace=int(0)
+                mmCorrectNumber=int(0)
+                mmWrongNumber=int(0)
+                userGuess=str()
+                userGuessRangeCheck=int(0)
+                numOfTries+=1
         # Loop to play the game
         playingMastermindAnswer=input(" GAME OVER!\n Would you like to play again (Yes/No): ")
         if (playingMastermindAnswer=="Yes"):
