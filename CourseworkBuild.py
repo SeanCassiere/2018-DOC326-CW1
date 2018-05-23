@@ -3,7 +3,7 @@
 from random import randrange
 # Declaring variables
 genRandomList=[]
-playingMastermind=1
+playingMastermind=int(1)
 playingMastermindAnswer=str()
 mmCorrectPlace=int(0)
 mmCorrectNumber=int(0)
@@ -35,6 +35,8 @@ if (menu_inp=="Yes"):
                         userGuessRangeCheck+=1
                 if (int(userGuess)==0):
                     numOfTries=10
+                elif (genRandomList==userGuessList):
+                    numOfTries=11
                 else:
                     if (userGuessRangeCheck!=4):
                         print("From your 4 digit guess of ",userGuess," ,",(4-userGuessRangeCheck)," digit(s) were not within the range of 1-6")
