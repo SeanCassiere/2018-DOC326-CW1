@@ -1,5 +1,4 @@
 # Mastermind Game
-#
 # Lib Import
 from random import randrange
 from pathlib import *
@@ -17,12 +16,12 @@ numOfTries=int(0)
 userTryExit=int()
 outputFileName="MastermindGameHistory.txt"
 outputFile=Path("MastermindGameHistory.txt")
-#
+# Menu Input
 menu_inp=input("Would you like to begin(Yes/No): ")
-#
+# Game Section
 if (menu_inp=="Yes"):
     while (playingMastermind==1):
-        for i in range(0,4): #Generate Random 4 Digit number with each digit having a range of 1-6
+        for i in range(0,4):
             genRandomList.insert(i,randrange(1,7,1))
         print(genRandomList)
         if outputFile.is_file():
@@ -38,7 +37,6 @@ if (menu_inp=="Yes"):
         while (numOfTries<8):
             print("Try number: ",numOfTries+1)
             userGuess=str(input("Enter your guess: "))
-            #userGuessExit=int(userGuess)
             if (len(userGuess)<4 or len(userGuess)>4):
                 print(userGuess," is not 4 digits")
             else:
