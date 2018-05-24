@@ -48,6 +48,9 @@ if (menu_inp=="Yes"):
                 if (int(userGuess)==0):
                     numOfTries=10
                 elif (genRandomList==userGuessList):
+                    print("Congratulations !!!!! You have won the game…")
+                    myfile.write(' User won the game at try number: ')
+                    myfile.write(str(numOfTries))
                     numOfTries=11
                 else:
                     if (userGuessRangeCheck!=4):
@@ -81,7 +84,7 @@ if (menu_inp=="Yes"):
             input("Press 'Enter' to exit...")
             quit()
         else:
-            playingMastermindAnswer=input(" GAME ENDED!\n Would you like to play again (Yes/No): ")
+            playingMastermindAnswer=input("Do you want to play another game (Yes/No) ?: ")
             if (playingMastermindAnswer=="Yes"):
                 playingMastermind=1
                 numOfTries=0
@@ -93,16 +96,16 @@ if (menu_inp=="Yes"):
                 myfile.close()
             elif (playingMastermindAnswer=="No"):
                 print(" Thank-you for playing.\n Hope you had fun.\n Shutting down the game.")
-                myfile.write('*******GAME END********\n')
+                myfile.write('\n*******GAME END********\n')
                 myfile.close()
                 playingMastermind=0
             elif (playingMastermind==0):
                 print(" Thank-you for playing.\n Hope you had fun.\n Shutting down the game.")
-                myfile.write('*******GAME END********\n')
+                myfile.write('\n*******GAME END********\n')
                 myfile.close()
             else:
                 print("Sorry that response was not expected.\n Shutting down the game.")
-                myfile.write('*******GAME END********\n')
+                myfile.write('\n*******GAME END********\n')
                 myfile.close()
                 playingMastermind=0
 elif (menu_inp=="No"):
