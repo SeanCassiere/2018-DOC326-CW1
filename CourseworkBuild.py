@@ -14,6 +14,7 @@ userGuess=str()
 userGuessList=[]
 userGuessRangeCheck=int(0)
 numOfTries=int(0)
+userTryExit=int()
 outputFileName="MastermindGameHistory.txt"
 outputFile=Path("MastermindGameHistory.txt")
 #
@@ -37,7 +38,7 @@ if (menu_inp=="Yes"):
         while (numOfTries<8):
             print("Try number: ",numOfTries+1)
             userGuess=str(input("Enter your guess: "))
-            userGuessExit=int(userGuess)
+            #userGuessExit=int(userGuess)
             if (len(userGuess)<4 or len(userGuess)>4):
                 print(userGuess," is not 4 digits")
             else:
@@ -46,16 +47,24 @@ if (menu_inp=="Yes"):
                     if (int(userGuess[h])>=1 and int(userGuess[h])<=6):
                         userGuessRangeCheck+=1
                 if (int(userGuess)==0):
+                    userTryExit=int(numOfTries+1)
                     numOfTries=10
                 elif (genRandomList==userGuessList):
                     print("Congratulations !!!!! You have won the game…")
-                    myfile.write(' User won the game at try number: ')
-                    myfile.write(str(numOfTries))
+                    userTryExit=int(numOfTries+1)
+                    myfile.write('User won the game at try number: ')
+                    myfile.write(str(userTryExit))
                     numOfTries=11
                 else:
                     if (userGuessRangeCheck!=4):
                         print("From your 4 digit guess of ",userGuess," ,",(4-userGuessRangeCheck)," digit(s) were not within the range of 1-6")
                     else:
+                        userTryExit=int(numOfTries+1)
+                        myfile.write('For try number: ')
+                        myfile.write(str(userTryExit))
+                        myfile.write(' the user guessed: ')
+                        myfile.write(userGuess)
+                        myfile.write('\n')
                         for j in range(0,4): # Mastermind Game Check
                             if (userGuessList[j]==genRandomList[j]):
                                 mmCorrectPlace+=1
@@ -63,7 +72,7 @@ if (menu_inp=="Yes"):
                                 mmCorrectNumber+=1
                             else:
                                 mmWrongNumber+=1
-                        print("Tries :",numOfTries+1, end="     ")
+                        print("Tries :",userTryExit, end="     ")
                         print("Guess :",userGuess)
                         for o in range(0,mmCorrectPlace):
                             print("1", end="")
@@ -80,6 +89,11 @@ if (menu_inp=="Yes"):
                     userGuessList=[]
                     userGuessRangeCheck=int(0)
         if (numOfTries==10):
+            myfile.write('The user decided to quit after: ')
+            userTryExit-=1
+            myfile.write(str(userTryExit))
+            myfile.write(' tries.')
+            myfile.write('\n*******GAME END********\n')
             myfile.close()
             input("Press 'Enter' to exit...")
             quit()
@@ -92,7 +106,7 @@ if (menu_inp=="Yes"):
                 userGuessList=[]
                 userGuessRangeCheck=0
                 genRandomList=[]
-                myfile.write(outputEnd,'\n')
+                myfile.write('\n*******GAME END********\n')
                 myfile.close()
             elif (playingMastermindAnswer=="No"):
                 print(" Thank-you for playing.\n Hope you had fun.\n Shutting down the game.")
@@ -110,5 +124,7 @@ if (menu_inp=="Yes"):
                 playingMastermind=0
 elif (menu_inp=="No"):
     print("We'll play again soon.")
+else:
+    print("That is not an accepted reply.")
 input("Press 'Enter' to exit...")
 quit()
