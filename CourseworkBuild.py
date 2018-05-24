@@ -62,7 +62,7 @@ if (menu_inp=="Yes"):
                         myfile.write(str(userTryExit))
                         myfile.write(' the user guessed: ')
                         myfile.write(userGuess)
-                        myfile.write('\n')
+                        myfile.write('  ')
                         for j in range(0,4): # Mastermind Game Check
                             if (userGuessList[j]==genRandomList[j]):
                                 mmCorrectPlace+=1
@@ -74,11 +74,15 @@ if (menu_inp=="Yes"):
                         print("Guess :",userGuess)
                         for o in range(0,mmCorrectPlace):
                             print("1", end="")
+                            myfile.write('1')
                         for p in range(0,mmCorrectNumber):
                             print("0", end="")
+                            myfile.write('0')
                         for k in range(0,mmWrongNumber):
                             print("-", end="")
+                            myfile.write('-')
                         print("\n")
+                        myfile.write('\n')
                         numOfTries+=1
                     mmCorrectPlace=int(0)
                     mmCorrectNumber=int(0)
