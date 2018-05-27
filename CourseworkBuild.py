@@ -13,8 +13,7 @@ mmWrongNumber=int(0) # Counter, incorrect digit guesses
 userGuess=str() # String, initial guess by user
 userGuessList=[] # List, convert userGuess for comparison
 userGuessRangeCheck=int(0) # Counter, digits within range
-numOfTries=int(0) # Counter, number of attempts for program
-#userTryExit=int(1) # Counter, number of attempts for .txt print
+numOfTries=int(0) # Counter, number of attempts for programs
 outputFileName="MastermindGameHistory.txt" # .txt filename
 outputFile=Path("MastermindGameHistory.txt") # .txt file location
 # Menu Input
