@@ -1,25 +1,26 @@
 # Mastermind Game
-# Lib Import
+#
+# Import Libraries
 from random import randrange
 from pathlib import *
 # Declaring variables
-genRandomList=[]
-playingMastermind=int(1)
-playingMastermindAnswer=str()
-mmCorrectPlace=int(0)
-mmCorrectNumber=int(0)
-mmWrongNumber=int(0)
-userGuess=str()
-userGuessList=[]
-userGuessRangeCheck=int(0)
-numOfTries=int(0)
-userTryExit=int()
-outputFileName="MastermindGameHistory.txt"
-outputFile=Path("MastermindGameHistory.txt")
+genRandomList=[] # Random number generation list
+playingMastermind=int(1) # Integer, continue playing game
+playingMastermindAnswer=str() # String, prompt to replay game
+mmCorrectPlace=int(0) # Counter, correct digit correct place guesses
+mmCorrectNumber=int(0) # Counter, counting correct digit wrong place guesses
+mmWrongNumber=int(0) # Counter, incorrect digit guesses
+userGuess=str() # String, initial guess by user
+userGuessList=[] # List, convert userGuess for comparison
+userGuessRangeCheck=int(0) # Counter, digits within range
+numOfTries=int(0) # Counter, number of attempts for program
+userTryExit=int(1) # Counter, number of attempts for .txt print
+outputFileName="MastermindGameHistory.txt" # .txt filename
+outputFile=Path("MastermindGameHistory.txt") # .txt file location
 # Menu Input
 menu_inp=input("Would you like to begin(Yes/No): ")
 # Game Section
-if (menu_inp=="Yes"):
+if (menu_inp=="Yes"): # User selection "Yes"
     while (playingMastermind==1):
         for i in range(0,4):
             genRandomList.insert(i,randrange(1,7,1))
@@ -32,8 +33,8 @@ if (menu_inp=="Yes"):
         for y in range(0,4):
             myfile.write(str(genRandomList[y]))
         myfile.write("\n")
-        print("Enter your guess using a 4 digit code (follow the scheme below).")
-        print(" 1 - White\n 2 - Blue\n 3 - Red\n 4 - Yellow\n 5 - Green\n 6 - Purple")
+        print("Enter your guess using a 4 digit code (follow the scheme below).\nYou are to guess the randomly generated 4 colour pattern.")
+        print("1 - White\n2 - Blue\n3 - Red\n4 - Yellow\n5 - Green\n6 - Purple")
         while (numOfTries<8):
             print("Try number: ",numOfTries+1)
             userGuess=str(input("Enter your guess: "))
@@ -91,42 +92,33 @@ if (menu_inp=="Yes"):
                     userGuessList=[]
                     userGuessRangeCheck=int(0)
         if (numOfTries==10):
-            myfile.write('The user decided to quit after: ')
             userTryExit-=1
+            myfile.write('The user decided to quit after: ')
             myfile.write(str(userTryExit))
-            myfile.write(' tries.')
-            myfile.write('\n*******GAME END********\n')
+            myfile.write(' tries.\n*******GAME END********\n')
             myfile.close()
             input("Press 'Enter' to exit...")
             quit()
         else:
             playingMastermindAnswer=input("Do you want to play another game (Yes/No) ?: ")
             if (playingMastermindAnswer=="Yes"):
-                playingMastermind=1
                 numOfTries=0
                 userGuess=str()
                 userGuessList=[]
                 userGuessRangeCheck=0
                 genRandomList=[]
-                myfile.write('\n*******GAME END********\n')
-                myfile.close()
+                playingMastermind=1
             elif (playingMastermindAnswer=="No"):
-                print(" Thank-you for playing.\n Hope you had fun.\n Shutting down the game.")
-                myfile.write('\n*******GAME END********\n')
-                myfile.close()
+                print("Thank-you for playing.\nHope you had fun.\nShutting down the game.")
                 playingMastermind=0
-            elif (playingMastermind==0):
-                print(" Thank-you for playing.\n Hope you had fun.\n Shutting down the game.")
-                myfile.write('\n*******GAME END********\n')
-                myfile.close()
             else:
-                print("Sorry that response was not expected.\n Shutting down the game.")
-                myfile.write('\n*******GAME END********\n')
-                myfile.close()
+                print("Sorry that response was not expected.\nShutting down the game.")
                 playingMastermind=0
-elif (menu_inp=="No"):
+            myfile.write('\n*******GAME END********\n')
+            myfile.close()
+elif (menu_inp=="No"): # User selection "No"
     print("We'll play again soon.")
-else:
+else: #User selection not within range
     print("That is not an accepted reply.")
 input("Press 'Enter' to exit...")
 quit()
