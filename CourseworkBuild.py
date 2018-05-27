@@ -23,7 +23,7 @@ if (menu_inp=="Yes"): # User selection "Yes"
     while (playingMastermind==1):
         for i in range(0,4): # Generating random number to genRandomList
             genRandomList.insert(i,randrange(1,7,1))
-        print(genRandomList) # Debug tool
+        #print(genRandomList) # Debug tool
         if outputFile.is_file(): # Check if .txt file exists
             myfile=open(outputFileName, 'a') # Open .txt file under Append
         else:
@@ -33,13 +33,13 @@ if (menu_inp=="Yes"): # User selection "Yes"
             myfile.write(str(genRandomList[y])) # Writing genRandomList to .txt
         myfile.write("\n")
         # Game Instructions
-        print("Enter your guess using a 4 digit code (follow the scheme below).\nYou are to guess the randomly generated 4 colour pattern.")
-        print("1 - White\n2 - Blue\n3 - Red\n4 - Yellow\n5 - Green\n6 - Purple")
+        print("\nEnter your guess using a 4 digit code (follow the scheme below).\nYou are to guess the randomly generated 4 colour pattern.")
+        print("1 - White\n2 - Blue\n3 - Red\n4 - Yellow\n5 - Green\n6 - Purple\n")
         while (numOfTries<8):
             print("Try number: ",numOfTries+1)
             userGuess=str(input("Enter your guess: ")) # User's guess
             if (len(userGuess)<4 or len(userGuess)>4): #userGuess length check
-                print(userGuess," is not 4 digits")
+                print("\n",userGuess," is not 4 digits")
             else:
                 for h in range(0,4): # userGuess check with range rules
                     userGuessList.insert(h,int(userGuess[h]))
@@ -48,15 +48,15 @@ if (menu_inp=="Yes"): # User selection "Yes"
                 if (int(userGuess)==0): # '0000' emergency exit
                     numOfTries=10
                 elif (genRandomList==userGuessList): # 'Won the game' exit
-                    print("Congratulations !!!!! You have won the game…")
+                    print("\nCongratulations !!!!! You have won the game…")
                     myfile.write('User won the game at try number: ')
                     myfile.write(str(numOfTries+1))
                     numOfTries=11
                 else:
                     if (userGuessRangeCheck!=4):
-                        print("From your 4 digit guess of ",userGuess," ,",(4-userGuessRangeCheck)," digit(s) were not within the range of 1-6")
+                        print("\nFrom your 4 digit guess of ",userGuess," ,",(4-userGuessRangeCheck)," digit(s) were not within the range of 1-6")
                     else:
-                        myfile.write('For try number: ')
+                        myfile.write('Try number: ')
                         myfile.write(str(numOfTries+1))
                         myfile.write(' the user guessed: ')
                         myfile.write(userGuess)
@@ -69,7 +69,8 @@ if (menu_inp=="Yes"): # User selection "Yes"
                             else:
                                 mmWrongNumber+=1
                         print("Tries :",numOfTries+1, end="     ")
-                        print("Guess :",userGuess)
+                        print("Guess :",userGuess, end="     ")
+                        print("Clue :", end="")
                         for o in range(0,mmCorrectPlace):
                             print("1", end="")
                             myfile.write('1')
@@ -97,19 +98,22 @@ if (menu_inp=="Yes"): # User selection "Yes"
             quit()
         else:
             # Replay Input
-            playingMastermindAnswer=input("Do you want to play another game (Yes/No) ?: ")
+            print("\nSorry the number to guess was: ",end="")
+            for k in range(0,4):
+                print(genRandomList[k],end="")
+            playingMastermindAnswer=input("\nWould you like to play another game (Yes/No) ?: ")
             if (playingMastermindAnswer=="Yes"): # 'Yes' choice involves resetting Variables
                 numOfTries=0
                 userGuess=str()
                 userGuessList=[]
                 userGuessRangeCheck=0
                 genRandomList=[]
-                playingMastermind=1
+                print("\n")
             elif (playingMastermindAnswer=="No"): # 'No' choice
-                print("Thank-you for playing.\nHope you had fun.\nShutting down the game.")
+                print("Thank-you for playing.\nHope you had fun.\nShutting down the game.\n")
                 playingMastermind=0
-            else: # 'Invalid inut'choice
-                print("Sorry that response was not expected.\nShutting down the game.")
+            else: # 'Invalid input'choice
+                print("Sorry that response was not expected.\nShutting down the game.\n")
                 playingMastermind=0
             myfile.write('\n*******GAME END********\n')
             myfile.close()
