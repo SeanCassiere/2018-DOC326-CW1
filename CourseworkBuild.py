@@ -22,33 +22,34 @@ menu_inp=input("Would you like to begin(Yes/No): ")
 # Game Section
 if (menu_inp=="Yes"): # User selection "Yes"
     while (playingMastermind==1):
-        for i in range(0,4):
+        for i in range(0,4): # Generating random number to genRandomList
             genRandomList.insert(i,randrange(1,7,1))
-        print(genRandomList)
-        if outputFile.is_file():
-            myfile=open(outputFileName, 'a')
+        print(genRandomList) # Debug tool
+        if outputFile.is_file(): # Check if .txt file exists
+            myfile=open(outputFileName, 'a') # Open .txt file under Append
         else:
-            myfile=open(outputFileName, 'w')
+            myfile=open(outputFileName, 'w') # Create .txt file under Write
         myfile.write('*******GAME START*******\n Randomly Generated Number: ')
         for y in range(0,4):
-            myfile.write(str(genRandomList[y]))
+            myfile.write(str(genRandomList[y])) # Writing genRandomList to .txt
         myfile.write("\n")
+        # Game Instructions
         print("Enter your guess using a 4 digit code (follow the scheme below).\nYou are to guess the randomly generated 4 colour pattern.")
         print("1 - White\n2 - Blue\n3 - Red\n4 - Yellow\n5 - Green\n6 - Purple")
         while (numOfTries<8):
             print("Try number: ",numOfTries+1)
-            userGuess=str(input("Enter your guess: "))
-            if (len(userGuess)<4 or len(userGuess)>4):
+            userGuess=str(input("Enter your guess: ")) # User's guess
+            if (len(userGuess)<4 or len(userGuess)>4): #userGuess length check
                 print(userGuess," is not 4 digits")
             else:
-                for h in range(0,4): # Check user input complying with range rules
+                for h in range(0,4): # userGuess check with range rules
                     userGuessList.insert(h,int(userGuess[h]))
                     if (int(userGuess[h])>=1 and int(userGuess[h])<=6):
                         userGuessRangeCheck+=1
-                if (int(userGuess)==0):
+                if (int(userGuess)==0): # '0000' emergency exit
                     userTryExit=int(numOfTries+1)
                     numOfTries=10
-                elif (genRandomList==userGuessList):
+                elif (genRandomList==userGuessList): # 'Won the game' exit
                     print("Congratulations !!!!! You have won the game…")
                     userTryExit=int(numOfTries+1)
                     myfile.write('User won the game at try number: ')
