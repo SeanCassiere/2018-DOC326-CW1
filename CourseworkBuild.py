@@ -96,18 +96,19 @@ if (menu_inp=="Yes"): # User selection "Yes"
             input("Press 'Enter' to exit...")
             quit()
         else:
+            # Replay Input
             playingMastermindAnswer=input("Do you want to play another game (Yes/No) ?: ")
-            if (playingMastermindAnswer=="Yes"):
+            if (playingMastermindAnswer=="Yes"): # 'Yes' choice involves resetting Variables
                 numOfTries=0
                 userGuess=str()
                 userGuessList=[]
                 userGuessRangeCheck=0
                 genRandomList=[]
                 playingMastermind=1
-            elif (playingMastermindAnswer=="No"):
+            elif (playingMastermindAnswer=="No"): # 'No' choice
                 print("Thank-you for playing.\nHope you had fun.\nShutting down the game.")
                 playingMastermind=0
-            else:
+            else: # 'Invalid inut'choice
                 print("Sorry that response was not expected.\nShutting down the game.")
                 playingMastermind=0
             myfile.write('\n*******GAME END********\n')
