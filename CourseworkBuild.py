@@ -16,6 +16,16 @@ userGuessRangeCheck=int(0) # Counter, digits within range
 numOfTries=int(0) # Counter, number of attempts for programs
 outputFileName="MastermindGameHistory.txt" # .txt filename
 outputFile=Path("MastermindGameHistory.txt") # .txt file location
+userWon=int(0)
+# Declaring functions
+def ClearUserGuessVariables():
+    "Used to clear the UserGuess, userGuessList & userGuessRangeCheck Variables"
+    global userGuess,userGuessList,userGuessRangeCheck
+    userGuess=str()
+    userGuessList=[]
+    userGuessRangeCheck=int(0)
+    userWon=int(0)
+    return
 # Menu Input
 menu_inp=input("Would you like to begin(Yes/No): ")
 # Game Section
@@ -49,6 +59,7 @@ if (menu_inp=="Yes"): # User selection "Yes"
                     numOfTries=10
                 elif (genRandomList==userGuessList): # 'Won the game' exit
                     print("\nCongratulations !!!!! You have won the game…")
+                    userWon=int(1)
                     myfile.write('User won the game at try number: ')
                     myfile.write(str(numOfTries+1))
                     numOfTries=11
@@ -86,27 +97,23 @@ if (menu_inp=="Yes"): # User selection "Yes"
                     mmCorrectPlace=int(0)
                     mmCorrectNumber=int(0)
                     mmWrongNumber=int(0)
-                    userGuess=str()
-                    userGuessList=[]
-                    userGuessRangeCheck=int(0)
-        if (numOfTries==10):
-            myfile.write('The user decided to quit after: ')
-            myfile.write(str(numOfTries+1))
-            myfile.write(' tries.\n*******GAME END********\n')
+                    ClearUserGuessVariables()
+        if (numOfTries==10): # Exit point for '0000'
+            myfile.write('The user decided to quit the game.\n*******GAME END*********\n')
             myfile.close()
             input("Press 'Enter' to exit...")
             quit()
         else:
             # Replay Input
-            print("\nSorry the number to guess was: ",end="")
-            for k in range(0,4):
-                print(genRandomList[k],end="")
+            if (int(userWon)==0):
+                print("\nThe number to guess was: ",end="")
+                for k in range(0,4):
+                    print(genRandomList[k],end="")
+                print("\n")
             playingMastermindAnswer=input("\nWould you like to play another game (Yes/No) ?: ")
             if (playingMastermindAnswer=="Yes"): # 'Yes' choice involves resetting Variables
                 numOfTries=0
-                userGuess=str()
-                userGuessList=[]
-                userGuessRangeCheck=0
+                ClearUserGuessVariables()
                 genRandomList=[]
                 print("\n")
             elif (playingMastermindAnswer=="No"): # 'No' choice
@@ -115,7 +122,7 @@ if (menu_inp=="Yes"): # User selection "Yes"
             else: # 'Invalid input'choice
                 print("Sorry that response was not expected.\nShutting down the game.\n")
                 playingMastermind=0
-            myfile.write('\n*******GAME END********\n')
+            myfile.write('\n*******GAME END*********\n')
             myfile.close()
 elif (menu_inp=="No"): # User selection "No"
     print("We'll play again soon.")
