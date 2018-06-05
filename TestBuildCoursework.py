@@ -1,12 +1,12 @@
 # Mastermind Game
-#
-# Import Libraries
+# Declarations
+#   Import Libraries
 from random import randrange
 from pathlib import *
 # Declaring variables
 genRandomList=[] # Random number generation list
 playingMastermind=int(1) # Integer, continue playing game
-playingMastermindAnswer=str() # String, prompt to replay game
+menu_inp=str() # String, prompt to eihter star or replay game
 mmCorrectPlace=int(0) # Counter, correct digit correct place guesses
 mmCorrectNumber=int(0) # Counter, counting correct digit wrong place guesses
 mmWrongNumber=int(0) # Counter, incorrect digit guesses
@@ -17,16 +17,16 @@ numOfTries=int(0) # Counter, number of attempts for programs
 outputFileName="MastermindGameHistory.txt" # .txt filename
 outputFile=Path("MastermindGameHistory.txt") # .txt file location
 userWon=int(0)
-# Declaring functions
+#   Declaring functions
 def ClearUserGuessVariables():
     "Used to clear the UserGuess, userGuessList & userGuessRangeCheck Variables"
-    global userGuess,userGuessList,userGuessRangeCheck
+    global userGuess,userGuessList,userGuessRangeCheck, userWon
     userGuess=str()
     userGuessList=[]
     userGuessRangeCheck=int(0)
     userWon=int(0)
     return
-# Menu Input
+# Program begins
 menu_inp=input("Would you like to begin(Yes/No): ")
 # Game Section
 if (menu_inp=="Yes"): # User selection "Yes"
@@ -110,13 +110,13 @@ if (menu_inp=="Yes"): # User selection "Yes"
                 for k in range(0,4):
                     print(genRandomList[k],end="")
                 print("\n")
-            playingMastermindAnswer=input("\nWould you like to play another game (Yes/No) ?: ")
-            if (playingMastermindAnswer=="Yes"): # 'Yes' choice involves resetting Variables
+            menu_inp=input("\nWould you like to play another game (Yes/No) ?: ")
+            if (menu_inp=="Yes"): # 'Yes' choice involves resetting Variables
+                genRandomList=[]
                 numOfTries=0
                 ClearUserGuessVariables()
-                genRandomList=[]
                 print("\n")
-            elif (playingMastermindAnswer=="No"): # 'No' choice
+            elif (menu_inp=="No"): # 'No' choice
                 print("Thank-you for playing.\nHope you had fun.\nShutting down the game.\n")
                 playingMastermind=0
             else: # 'Invalid input'choice
